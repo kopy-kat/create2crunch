@@ -199,7 +199,7 @@ static inline void keccakf(ulong *a)
 #if LEADING_ZEROES == 8
 #define hasLeading(d) (!(((uint*)d)[0]) && !(((uint*)d)[1]))
 #elif LEADING_ZEROES == 7
-#define hasLeading(d) (!(((uint*)d)[0]) && !(((uint*)d)[1] & 0x00ffffffu))
+#define hasLeading(d) ((((uint*)d)[0] & 0x0000ffffu) == 0x7975u && (((uint*)d)[4] & 0xffff0000u) == 0xff000000u)
 #elif LEADING_ZEROES == 6
 #define hasLeading(d) ((((uint*)d)[0] & 0x0000ffffu) == 0x7975u && (((uint*)d)[4] & 0xffff0000u) == 0x01000000u)
 #elif LEADING_ZEROES == 5
